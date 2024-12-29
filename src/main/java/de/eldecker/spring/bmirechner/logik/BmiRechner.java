@@ -7,6 +7,10 @@ import de.eldecker.spring.bmirechner.model.BmiErgebnisRecord;
 
 /**
  * Bean-Klasse mit eigentlicher BMI-Berechnung. 
+ * <br><br>
+ * 
+ * Erklärung Formel und Schwellwerte siehe:
+ * https://www.barmer.de/gesundheit-verstehen/leben/abnehmen-diaet/body-mass-index/bmi-rechner-1004244
  */
 @Service
 public class BmiRechner {
@@ -27,7 +31,15 @@ public class BmiRechner {
         final double bmiUngerundet = kg / ( groesseMeter * groesseMeter );
         final int    bmiGerundet   = (int)( bmiUngerundet * 100 / 100.0 );
         
-        final BmiErgebnisRecord ergebnis = new BmiErgebnisRecord( true, bmiGerundet, "N/A" );
+        String interpretation = "";
+        if      ( bmiGerundet < 18.5 ) { interpretation = "Untergewicht";  }         	        
+        else if ( bmiGerundet < 25   ) { interpretation = "Normalgewicht"; }
+        else { interpretation = "Übergewicht"; }
+        
+        final BmiErgebnisRecord ergebnis = 
+        		new BmiErgebnisRecord( true, 
+        		                       bmiGerundet, 
+        		                       interpretation );
         return ergebnis;
 	}
 	
