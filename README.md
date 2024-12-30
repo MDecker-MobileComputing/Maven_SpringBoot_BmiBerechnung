@@ -4,7 +4,7 @@
 
 Dieses Repo enthält eine mit *Spring Boot* erstellte Java-Anwendung in Form eines Maven-Projekts, 
 das einen REST-Endpunkt zur Durchführung von BMI-Werten implementiert.
-Es sollen hiermit demonstriert werden:
+Mit dieser Anwendung soll folgendes demonstriert werden:
 * Session Beans
 * Globaler Exception-Handler
 
