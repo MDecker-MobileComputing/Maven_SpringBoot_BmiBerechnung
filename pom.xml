@@ -12,15 +12,15 @@
         <version>3.4.1</version>
         <relativePath/> <!-- lookup parent from repository -->   
     </parent>
+
     <groupId>de.eldecker.spring</groupId>
     <artifactId>bmirechner</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>BMI-Rechner</name>
     
     <description>Demo-Projekt für Session-Bean</description>
-    <inceptionYear>2024</inceptionYear>
-    
-    <url/>
+    <inceptionYear>2024</inceptionYear>    
+    <url>https://github.com/MDecker-MobileComputing/Maven_SpringBoot_BmiBerechnung/</url>
     <licenses>
       <license>
         <name>BSD 3-Clause License</name>
