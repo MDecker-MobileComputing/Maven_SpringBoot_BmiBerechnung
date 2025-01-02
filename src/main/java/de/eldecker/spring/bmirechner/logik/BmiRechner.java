@@ -37,9 +37,9 @@ public class BmiRechner {
         else { interpretation = "Übergewicht"; }
         
         final BmiErgebnisRecord ergebnis = 
-        		new BmiErgebnisRecord( true, 
-        		                       bmiGerundet, 
-        		                       interpretation );
+					        		new BmiErgebnisRecord( true, 
+					        		                       bmiGerundet, 
+					        		                       interpretation );
         return ergebnis;
 	}
 	

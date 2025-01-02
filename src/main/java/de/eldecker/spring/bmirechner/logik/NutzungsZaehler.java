@@ -65,7 +65,7 @@ public class NutzungsZaehler {
 	
 	
 	/**
-	 * ID für HTTP-Session abfragen.
+	 * ID für HTTP-Session abfragen (jsessionid).
 	 * 
 	 * @return Sitzungs-ID; kann leerer String sein, aber nicht {@code null}
 	 */
