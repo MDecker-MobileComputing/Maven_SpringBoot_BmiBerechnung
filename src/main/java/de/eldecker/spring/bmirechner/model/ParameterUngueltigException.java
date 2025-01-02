@@ -8,6 +8,13 @@ package de.eldecker.spring.bmirechner.model;
 @SuppressWarnings("serial")
 public class ParameterUngueltigException extends Exception {
 
+	/**
+	 * Konstruktor zur Erzeugung eines Exception-Objekts zur Signalisierung
+	 * eines ungültigen Paramters.
+	 * 
+	 * @param fehlerbeschreibung Beschreibung, welcher Parameter im ungültigen
+	 *                           Bereich lag
+	 */
 	public ParameterUngueltigException( String fehlerbeschreibung ) {
 		
 		super( fehlerbeschreibung );

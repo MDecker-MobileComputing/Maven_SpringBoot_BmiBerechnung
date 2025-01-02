@@ -28,14 +28,15 @@ public class NutzungsZaehler {
 	
 	/** Zähler für Anzahl der durchgeführten Berechnungen. */
 	private int _anzahlBerechnungen = 0;
-	
-    @Autowired
+	    
+	/** Objekt zum Auslesen von Details HTTP-Request. */
     private HttpServletRequest _httpRequest;
 
 	
 	/**
 	 * Konstruktor, gibt Nr der erzeugten Instanz auf Logger aus.
 	 */
+    @Autowired
 	public NutzungsZaehler( HttpServletRequest httpRequest ) {
 	
 	    _httpRequest = httpRequest;
