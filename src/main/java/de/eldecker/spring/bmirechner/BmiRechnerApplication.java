@@ -10,6 +10,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BmiRechnerApplication {
 
+	/**
+	 * Einstiegsmethode 
+	 * 
+	 * @param args Kommandozeilenargumente werden an Spring Boot
+	 *             durchgereicht.
+	 */
 	public static void main( String[] args ) {
 		
 		SpringApplication.run( BmiRechnerApplication.class, args );
