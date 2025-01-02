@@ -51,11 +51,11 @@ public class BmiRestController {
 	/**
 	 * Globaler Exception-Handler für ungültige Parameterwerte.
 	 * 
-	 * @param ex Exception wegen 
+	 * @param ex Exception wegen ungültigem Parameter als Input für Berechnung
 	 * 
 	 * @return String mit Fehlerbeschreibung
 	 */
-    @ExceptionHandler(ParameterUngueltigException.class)
+    @ExceptionHandler( ParameterUngueltigException.class )
     public ResponseEntity<String> exceptionBehandeln( ParameterUngueltigException ex ) {
 
         final String fehlerText = "Fehler bei Suchanfrage: " + ex.getMessage(); 
@@ -99,23 +99,11 @@ public class BmiRestController {
 		}
 		
 		
-		if ( kg < 30 ) {
-			
-			throw new ParameterUngueltigException( "Wert kg=" + kg + " zu klein" );
-		}
-		if ( kg > 500 ) {
-			
-			throw new ParameterUngueltigException( "Wert kg=" + kg + " zu groß" );
-		}
+		if ( kg <  30 ) { throw new ParameterUngueltigException( "Wert kg=" + kg + " zu klein" ); }
+		if ( kg > 500 ) { throw new ParameterUngueltigException( "Wert kg=" + kg + " zu groß"  ); }
 
-		if ( cm < 100 ) {
-			
-			throw new ParameterUngueltigException( "Wert cm=" + cm + " zu klein" );
-		}
-		if ( cm > 250 ) {
-			
-			throw new ParameterUngueltigException( "Wert cm=" + cm + " zu groß" );
-		}
+		if ( cm < 100 ) { throw new ParameterUngueltigException( "Wert cm=" + cm + " zu klein" ); }
+		if ( cm > 250 ) { throw new ParameterUngueltigException( "Wert cm=" + cm + " zu groß"  ); }	
 		
 		
 		final BmiErgebnisRecord bmi = _bmiRechner.bmiBerechnen( cm, kg );
