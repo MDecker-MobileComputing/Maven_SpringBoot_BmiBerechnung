@@ -19,6 +19,7 @@ import de.eldecker.spring.bmirechner.model.ParameterUngueltigException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 /**
  * RestController-Klasse mit REST-Endpunkt für Berechnung von BMI.
  */
@@ -34,6 +35,7 @@ public class BmiRestController {
 	/** Session-Bean */
 	private NutzungsZaehler _nutzungsZaehler;
 	
+
 	/**
 	 * Konstruktor für Dependency Injection.
 	 */
@@ -90,7 +92,9 @@ public class BmiRestController {
 		final int nutzungsZaehler = _nutzungsZaehler.erhoeheBerechnungsZaehler();
 		if ( nutzungsZaehler > 3 ) {
 			
-			final BmiErgebnisRecord erg = new BmiErgebnisRecord( false, 0, "Nutzungs-Quota ausgeschöpft" );
+			final BmiErgebnisRecord erg = 
+					new BmiErgebnisRecord( false, 0, "Nutzungs-Quota ausgeschöpft" );
+			
 			return ResponseEntity.status( OK ).body( erg );
 		}
 		
