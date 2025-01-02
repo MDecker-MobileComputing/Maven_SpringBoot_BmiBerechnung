@@ -29,32 +29,32 @@ public class BmiRestController {
 
     private static final Logger LOG = LoggerFactory.getLogger( BmiRestController.class );
     
-	/** Service-Bean für eigentliche Berechnung. */
-	private BmiRechner _bmiRechner;
-	
-	/** Session-Bean */
-	private NutzungsZaehler _nutzungsZaehler;
-	
+    /** Service-Bean für eigentliche Berechnung. */
+    private BmiRechner _bmiRechner;
+    
+    /** Session-Bean */
+    private NutzungsZaehler _nutzungsZaehler;
+    
 
-	/**
-	 * Konstruktor für Dependency Injection.
-	 */
-	@Autowired
-	public BmiRestController( BmiRechner bmiRechner,
-			                  NutzungsZaehler nutzungsZaehler ) {
-	
-		_bmiRechner      = bmiRechner;
-		_nutzungsZaehler = nutzungsZaehler;
-	}
-	
-	
-	/**
-	 * Globaler Exception-Handler für ungültige Parameterwerte.
-	 * 
-	 * @param ex Exception wegen ungültigem Parameter als Input für Berechnung
-	 * 
-	 * @return String mit Fehlerbeschreibung
-	 */
+    /**
+     * Konstruktor für Dependency Injection.
+     */
+    @Autowired
+    public BmiRestController( BmiRechner bmiRechner,
+                              NutzungsZaehler nutzungsZaehler ) {
+    
+        _bmiRechner      = bmiRechner;
+        _nutzungsZaehler = nutzungsZaehler;
+    }
+    
+    
+    /**
+     * Globaler Exception-Handler für ungültige Parameterwerte.
+     * 
+     * @param ex Exception wegen ungültigem Parameter als Input für Berechnung
+     * 
+     * @return String mit Fehlerbeschreibung
+     */
     @ExceptionHandler( ParameterUngueltigException.class )
     public ResponseEntity<String> exceptionBehandeln( ParameterUngueltigException ex ) {
 
@@ -64,51 +64,51 @@ public class BmiRestController {
         return new ResponseEntity<>( fehlerText, BAD_REQUEST );
     }        
 
-	
-	/**
-	 * Body Mass Index (BMI) berechnen.
-	 * <br><br>
-	 * 
-	 * URL bei lokalem Aufruf:
-	 * <pre>
-	 * http://localhost:8080/api/v1/bmi
-	 * </pre>
-	 * 
-	 * @param kg URL-Parameter mit Körpergewicht in Kilogramm, muss zwischen 30 und 500 liegen
-	 * 
-	 * @param cm URL-Parameter mit Körpergröße in Zentimeter, muss z wikschen 100 und 250 liegen
-	 * 
-	 * @return Immer Status-Code 200 (OK), JSON mit Ergebnis
-	 * 
-	 * @throws ParameterUngueltigException Wenn einer der beiden Parameter
-	 *                                     einen Wert außerhalb dem gültigen
-	 *                                     Bereich hat.
-	 */
-	@GetMapping( "/bmi" )
-	public ResponseEntity<BmiErgebnisRecord> bmiBerechnung( @RequestParam("kg") int kg, 
-			                                                @RequestParam("cm") int cm ) 
-			                                        throws ParameterUngueltigException {
-		
-		final int nutzungsZaehler = _nutzungsZaehler.erhoeheBerechnungsZaehler();
-		if ( nutzungsZaehler > 3 ) {
-			
-			final BmiErgebnisRecord erg = 
-					new BmiErgebnisRecord( false, 0, "Nutzungs-Quota ausgeschöpft" );
-			
-			return ResponseEntity.status( OK ).body( erg );
-		}
-		
-		
-		if ( kg <  30 ) { throw new ParameterUngueltigException( "Wert kg=" + kg + " zu klein" ); }
-		if ( kg > 500 ) { throw new ParameterUngueltigException( "Wert kg=" + kg + " zu groß"  ); }
+    
+    /**
+     * Body Mass Index (BMI) berechnen.
+     * <br><br>
+     * 
+     * URL bei lokalem Aufruf:
+     * <pre>
+     * http://localhost:8080/api/v1/bmi
+     * </pre>
+     * 
+     * @param kg URL-Parameter mit Körpergewicht in Kilogramm, muss zwischen 30 und 500 liegen
+     * 
+     * @param cm URL-Parameter mit Körpergröße in Zentimeter, muss z wikschen 100 und 250 liegen
+     * 
+     * @return Immer Status-Code 200 (OK), JSON mit Ergebnis
+     * 
+     * @throws ParameterUngueltigException Wenn einer der beiden Parameter
+     *                                     einen Wert außerhalb dem gültigen
+     *                                     Bereich hat.
+     */
+    @GetMapping( "/bmi" )
+    public ResponseEntity<BmiErgebnisRecord> bmiBerechnung( @RequestParam("kg") int kg, 
+                                                            @RequestParam("cm") int cm ) 
+                                                    throws ParameterUngueltigException {
+        
+        final int nutzungsZaehler = _nutzungsZaehler.erhoeheBerechnungsZaehler();
+        if ( nutzungsZaehler > 3 ) {
+            
+            final BmiErgebnisRecord erg = 
+                    new BmiErgebnisRecord( false, 0, "Nutzungs-Quota ausgeschöpft" );
+            
+            return ResponseEntity.status( OK ).body( erg );
+        }
+        
+        
+        if ( kg <  30 ) { throw new ParameterUngueltigException( "Wert kg=" + kg + " zu klein" ); }
+        if ( kg > 500 ) { throw new ParameterUngueltigException( "Wert kg=" + kg + " zu groß"  ); }
 
-		if ( cm < 100 ) { throw new ParameterUngueltigException( "Wert cm=" + cm + " zu klein" ); }
-		if ( cm > 250 ) { throw new ParameterUngueltigException( "Wert cm=" + cm + " zu groß"  ); }	
-		
-		
-		final BmiErgebnisRecord bmi = _bmiRechner.bmiBerechnen( cm, kg );
-		
-		return ResponseEntity.status( OK ).body( bmi );
-	}
-	
+        if ( cm < 100 ) { throw new ParameterUngueltigException( "Wert cm=" + cm + " zu klein" ); }
+        if ( cm > 250 ) { throw new ParameterUngueltigException( "Wert cm=" + cm + " zu groß"  ); } 
+        
+        
+        final BmiErgebnisRecord bmi = _bmiRechner.bmiBerechnen( cm, kg );
+        
+        return ResponseEntity.status( OK ).body( bmi );
+    }
+    
 }
