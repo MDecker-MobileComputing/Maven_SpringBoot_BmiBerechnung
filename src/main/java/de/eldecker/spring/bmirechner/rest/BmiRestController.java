@@ -80,9 +80,8 @@ public class BmiRestController {
      * 
      * @return Immer Status-Code 200 (OK), JSON mit Ergebnis
      * 
-     * @throws ParameterUngueltigException Wenn einer der beiden Parameter
-     *                                     einen Wert außerhalb dem gültigen
-     *                                     Bereich hat.
+     * @throws ParameterUngueltigException Wenn einer der beiden Parameter einen Wert außerhalb 
+     *                                     dem gültigen Bereich hat.                                     
      */
     @GetMapping( "/bmi" )
     public ResponseEntity<BmiErgebnisRecord> bmiBerechnung( @RequestParam("kg") int kg, 
