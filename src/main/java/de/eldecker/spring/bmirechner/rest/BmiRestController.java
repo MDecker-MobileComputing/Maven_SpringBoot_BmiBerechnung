@@ -92,6 +92,8 @@ public class BmiRestController {
         final int nutzungsZaehler = _nutzungsZaehler.erhoeheBerechnungsZaehler();
         if ( nutzungsZaehler > 3 ) {
             
+            LOG.warn( "Request wegen ausgeschoepften Nutzungs-Quota abgebrochen." );
+            
             final BmiErgebnisRecord erg = 
                     new BmiErgebnisRecord( false, 0, "Nutzungs-Quota ausgeschöpft" );
             

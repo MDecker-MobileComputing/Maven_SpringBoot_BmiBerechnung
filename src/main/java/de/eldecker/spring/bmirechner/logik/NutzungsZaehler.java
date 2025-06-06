@@ -59,7 +59,7 @@ public class NutzungsZaehler {
 		
 		_anzahlBerechnungen++;
 		
-		LOG.info( "Nutzungszähler für Session {} erhöht auf: {}", 
+		LOG.info( "Nutzungszaehler fuer Session {} erhoeht auf: {}", 
 		          getSessionId(), _anzahlBerechnungen ); 
 		
 		return _anzahlBerechnungen;
