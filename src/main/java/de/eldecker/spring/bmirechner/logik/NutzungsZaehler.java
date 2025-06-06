@@ -44,7 +44,8 @@ public class NutzungsZaehler {
 		sBeanCounter++;
 		
 		final String sessionId = getSessionId();
-		LOG.info( "SessionBean Nr. " + sBeanCounter + " angelegt, SessionID=" + sessionId );
+		LOG.info( "SessionBean Nr. {} angelegt, SessionID={} .",
+				  sBeanCounter, sessionId );
 	}
 	
 	

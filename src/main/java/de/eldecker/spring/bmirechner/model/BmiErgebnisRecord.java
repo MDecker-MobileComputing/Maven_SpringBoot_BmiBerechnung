@@ -18,8 +18,8 @@ package de.eldecker.spring.bmirechner.model;
  *                  sonst Fehlermeldung.            
  */
 public record BmiErgebnisRecord( boolean erfolg,
-		                         int bmi,
-		                         String nachricht
+		                         int     bmi,
+		                         String  nachricht
 		                       ) {
 
 }
