@@ -74,9 +74,9 @@ public class BmiRestController {
      * http://localhost:8080/api/v1/bmi
      * </pre>
      * 
-     * @param kg URL-Parameter mit Körpergewicht in Kilogramm, muss zwischen 30 und 500 liegen
+     * @param kg URL-Parameter mit Körpergewicht in Kilogramm, muss zwischen 6 und 592 liegen
      * 
-     * @param cm URL-Parameter mit Körpergröße in Zentimeter, muss z wikschen 100 und 250 liegen
+     * @param cm URL-Parameter mit Körpergröße in Zentimeter, muss zwischen 63 und 251 liegen
      * 
      * @return Immer Status-Code 200 (OK), JSON mit Ergebnis
      * 
@@ -100,11 +100,11 @@ public class BmiRestController {
         }
         
         
-        if ( kg <  30 ) { throw new ParameterUngueltigException( "Wert kg=" + kg + " zu klein" ); }
-        if ( kg > 500 ) { throw new ParameterUngueltigException( "Wert kg=" + kg + " zu groß"  ); }
+        if ( kg <   6 ) { throw new ParameterUngueltigException( "Wert kg=" + kg + " zu klein" ); }
+        if ( kg > 592 ) { throw new ParameterUngueltigException( "Wert kg=" + kg + " zu groß"  ); }
 
-        if ( cm < 100 ) { throw new ParameterUngueltigException( "Wert cm=" + cm + " zu klein" ); }
-        if ( cm > 250 ) { throw new ParameterUngueltigException( "Wert cm=" + cm + " zu groß"  ); } 
+        if ( cm <  63 ) { throw new ParameterUngueltigException( "Wert cm=" + cm + " zu klein" ); }
+        if ( cm > 251 ) { throw new ParameterUngueltigException( "Wert cm=" + cm + " zu groß"  ); } 
         
         
         final BmiErgebnisRecord bmi = _bmiRechner.bmiBerechnen( cm, kg );
